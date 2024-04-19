@@ -33,7 +33,7 @@ namespace WebDriver.Task2
 
         public void EnterTextInPaste(string text)
         {
-            actions.MoveToElement(this.Map.PasteTextArea);
+            actions.ScrollToElement(this.Map.PasteTextArea);
             actions.Perform();
             this.Map.PasteTextArea.Clear();
             this.Map.PasteTextArea.SendKeys(text);
@@ -41,7 +41,7 @@ namespace WebDriver.Task2
 
         public void ExpandPasteExpirationDropDown()
         {
-            actions.MoveToElement(this.Map.PasteExpiration);
+            actions.ScrollToElement(this.Map.PasteExpiration);
             actions.Perform();
             this.Map.PasteExpiration.Click();
         }
@@ -53,7 +53,7 @@ namespace WebDriver.Task2
 
         public void EnterNameTitle(string text)
         {
-            actions.MoveToElement(this.Map.PasteNameTitleInput);
+            actions.ScrollToElement(this.Map.PasteNameTitleInput);
             actions.Perform();
             this.Map.PasteNameTitleInput.Clear();
             this.Map.PasteNameTitleInput.SendKeys(text);
@@ -61,14 +61,13 @@ namespace WebDriver.Task2
 
         public void CreateNewPaste()
         {
-            actions.MoveToElement(this.Map.CreateNewPasteButton);
-            actions.Perform();
-            this.Map.CreateNewPasteButton.Click();
+            var js = (IJavaScriptExecutor)browser;
+            js.ExecuteScript("arguments[0].click();", this.Map.CreateNewPasteButton);
         }
 
         public void ChooseSyntaxHighLightingBash()
         {
-            actions.MoveToElement(this.Map.SyntaxHighlighting);
+            actions.ScrollToElement(this.Map.SyntaxHighlighting);
             actions.Perform();
             this.Map.SyntaxHighlighting.Click();
             this.Map.SyntaxHighLightingBash.Click();
